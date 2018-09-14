@@ -1,12 +1,14 @@
 class Quiz {
     constructor() {
-        this.COLUMN = 3;
+
+        // 프로퍼티 선언입니다.
+        this.COLUMN = 3; // 한 페이지당 표시되는 아이템 수입니다.
         this.index = 0;
         this.container = document.getElementById('container');
         this.rownum = document.getElementById('rownum');
         this.prev = document.getElementById('prev');
         this.next = document.getElementById('next');
-        this.str = [];
+        this.str = []; // 페이지당 담길 컨테이너입니다.
 
         this.todayPhoto = [
             {
@@ -55,6 +57,14 @@ class Quiz {
         this.initialization();
     }
     
+    /**
+     * imageContent 
+     * 
+     * todayPhoto의 한 item 당 표시되는 컨테이너입니다.
+     * 
+     * @param { string } image 이미지 url 주소입니다.
+     * @param { string } title 타이틀 주소입니다.
+     */
     imageContent (image, title) {
         return (
         `
@@ -72,6 +82,9 @@ class Quiz {
         )
     }
     
+    /**
+     * 생성자에 들어가는 메소드입니다.
+     */
     initialization () {
         this.prev.addEventListener('click', () => {
             if(this.index + 1 !== 1) {
@@ -86,19 +99,30 @@ class Quiz {
                 this.showPage();
             }
         }) // 다음 버튼 이벤트리스너 추가
+        
+        this.arrayProcessing();
+    }
+
+    /**
+     * arrayProcessing
+     * todayPhoto 를 가공하는 메소드입니다.
+     */
+    arrayProcessing () {
         this.str.push('');
         this.todayPhoto.map((item, index) => {
             this.str[this.str.length - 1] += this.imageContent(item.img, item.title);
             if(index % this.COLUMN === this.COLUMN - 1)
                 this.str.push('');
         });
-        this.showPage();
     }
-
+    /**
+     * showPage
+     * 실질적으로 브라우저에 띄워지는 메소드입니다.
+     */
     showPage () {
         this.container.innerHTML = this.str[this.index];   
         this.rownum.innerText = `${this.index + 1} / ${this.str.length}`;
     }
 }
-new Quiz();
+new Quiz().showPage();
 
