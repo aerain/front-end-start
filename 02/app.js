@@ -18,7 +18,7 @@ for(let i = 1; i <= 100; i++) {
 // 구구단 출력
 for(let i = 1; i <= 9; i++) {
     for(let j = 1; j <= 9; j++) {
-        console.log(i + "*" + j + "=" + (i * j));
+        console.log(`${i} + ${j} = ${i + j} 입니다.`);
     }
 }
 
@@ -28,6 +28,6 @@ for(let i = 1; i <= 9; i++) {
     while((num = prompt("숫자를 입력하세요")) !== '') {
         sum += parseInt(num);
     }
-    document.write("합은 " + sum);
+    document.write(`합은 ${sum}`);
 })();
 
