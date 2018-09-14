@@ -18,7 +18,7 @@ for(let i = 1; i <= 100; i++) {
 // 구구단 출력
 for(let i = 1; i <= 9; i++) {
     for(let j = 1; j <= 9; j++) {
-        console.log(`${i} + ${j} = ${i + j} 입니다.`);
+        console.log(`${i} * ${j} = ${i * j} 입니다.`);
     }
 }
 
