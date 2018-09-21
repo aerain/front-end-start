@@ -125,4 +125,3 @@ class Quiz {
     }
 }
 new Quiz().showPage();
-
