@@ -1,4 +1,4 @@
-var wrap = document.getElementsByClassName('wrap')[0];
+var wrap = document.querySelector('.wrap');
 
 var str = '';
 
@@ -7,8 +7,7 @@ for(let i = 1; i <= 4; i++) {
         // let block = document.createElement('div');
         // block.className = (i + j) % 2 == 1 ? 'black' : 'white';
         // wrap.appendChild(block);
-        str += `<div class='${(i + j) % 2 == 1 ? 'black' : 'white'}'></div>`
-        
+        str += `<div class='${(i + j) % 2 == 1 ? 'black' : 'white'}'></div>`  
     }
 }
 
