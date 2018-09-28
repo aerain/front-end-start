@@ -2,7 +2,7 @@ var url = 'https://1boon.kakao.com/ch/enter.json';
 
 class App {
     constructor(url) {
-        this.url = url;
+        this.uri = url;
         this.count = 1;
         this.moreButton = document.querySelector('button');
         
@@ -13,27 +13,32 @@ class App {
         this.moreButton.addEventListener('click', this.getData.bind(this));
     }
 
+    blockRender(item) {
+        return (
+            `<a href="https://1boon.kakao.com/${item.path}">${item.title}</a><br>`
+        );
+    }
+
     getData() {
-        this.getUrlData(url, json => {
-            // console.log(json);
+        this.getUrlData(json => {
             var str = '';
-            for(let i = 0; i < json.data.length; i++) {
-                let block = json.data[i];
-                str += `<a href="https://1boon.kakao.com/${block.path}">${block.title}</a><br>`
-            }
-        
+            json.data.map(item => str += this.blockRender(item));
             document.getElementById('wrap').innerHTML += str;
         });
     }
 
-    async getUrlData(url, callback) {
-        try {
-            let data = await fetch(url + `?page=${this.count++}&pagesize=10`);
-            let json = await data.json();
-            callback(json);
-            console.log('Fetch Success');
-        } catch (err) {
-            console.log('Fetch Error : -S', err);
+    async getUrlData(callback) {
+        if(fetch) { // fetch 사용가능 경우
+            try {
+                let data = await fetch(this.uri + `?page=${this.count++}&pagesize=10`);
+                let json = await data.json();
+                callback(json);
+                console.log('Fetch Success');
+            } catch (err) {
+                console.log('Fetch Error', err);
+            }
+        } else { // IE
+            document.getElementById('wrap').innerText = '해당 브라우저에서는 지원하지 않습니다.';
         }
     }
 }
