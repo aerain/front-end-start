@@ -4,6 +4,7 @@ class App {
     constructor(url) {
         this.uri = url;
         this.count = 1;
+        this.pagesize = 10;
         this.moreButton = document.querySelector('button');
         
         this.initialization();
@@ -30,7 +31,7 @@ class App {
     async getUrlData(callback) {
         if(fetch) { // fetch 사용가능 경우
             try {
-                let data = await fetch(this.uri + `?page=${this.count++}&pagesize=10`);
+                let data = await fetch(this.uri + `?page=${this.count++}&pagesize=${this.pagesize}`);
                 let json = await data.json();
                 callback(json);
                 console.log('Fetch Success');
