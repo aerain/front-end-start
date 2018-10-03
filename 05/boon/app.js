@@ -16,6 +16,7 @@ class App {
     }
 
     blockRender(item) {
+        let url = `https://1boon.kakao.com/${item.path}`
         let block = document.createElement('div');
         block.className = 'block';
         
@@ -25,7 +26,7 @@ class App {
 
         let title = document.createElement('div');
         title.className = 'title-container';
-        title.innerHTML = `<a class='link' href='https://1boon.kakao.com/${item.path}'>${item.title}</a>`;
+        title.innerHTML = `<a class='link' href='${url}'>${item.title}</a>`;
 
         block.appendChild(image);
         block.appendChild(title);
@@ -33,6 +34,9 @@ class App {
         block.addEventListener('mouseover', () => {
             block.classList.add('selected');
             block.querySelector('.link').style.color="#d9a73d";
+        })
+        block.addEventListener('click', () => {
+            document.location.href = url;
         })
         block.addEventListener('mouseleave', () => {
             block.classList.remove('selected');
