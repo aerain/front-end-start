@@ -17,10 +17,27 @@ class App {
 
     blockRender(item) {
         let block = document.createElement('div');
-        block.innerHTML = (
-            `<a href='https://1boon.kakao.com/${item.path}'>${item.title}</a>`
-        )
+        block.className = 'block';
+        
+        let image = document.createElement('div');
+        image.className = 'image-container';
+        image.style.backgroundImage=`url(${item.img})`;
 
+        let title = document.createElement('div');
+        title.className = 'title-container';
+        title.innerHTML = `<a class='link' href='https://1boon.kakao.com/${item.path}'>${item.title}</a>`;
+
+        block.appendChild(image);
+        block.appendChild(title);
+
+        block.addEventListener('mouseover', () => {
+            block.classList.add('selected');
+            block.querySelector('.link').style.color="#d9a73d";
+        })
+        block.addEventListener('mouseleave', () => {
+            block.classList.remove('selected');
+            block.querySelector('.link').style.color=null;
+        })
         return block;
     }
 
