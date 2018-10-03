@@ -5,6 +5,7 @@ class App {
         this.uri = url;
         this.count = 1;
         this.pagesize = 10;
+        this.wrap = document.getElementById('wrap');
         this.moreButton = document.querySelector('button');
         
         this.initialization();
@@ -15,16 +16,21 @@ class App {
     }
 
     blockRender(item) {
-        return (
-            `<a href="https://1boon.kakao.com/${item.path}">${item.title}</a><br>`
-        );
+        let block = document.createElement('div');
+        block.innerHTML = (
+            `<a href='https://1boon.kakao.com/${item.path}'>${item.title}</a>`
+        )
+
+        return block;
     }
 
     getData() {
         this.getUrlData(json => {
-            var str = '';
-            json.data.map(item => str += this.blockRender(item));
-            document.getElementById('wrap').innerHTML += str;
+            console.log(json);
+            json.data.map(item => this.wrap.appendChild(this.blockRender(item)));
+            // var str = '';
+            // json.data.map(item => str += this.blockRender(item));
+            // document.getElementById('wrap').innerHTML += str;
         });
     }
 
