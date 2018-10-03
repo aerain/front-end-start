@@ -1,6 +1,5 @@
-.wrap {
+#wrap {
     position: relative;
-    display: wrap;
     flex-wrap: wrap;
     flex-direction: column;
     width: 800px;
@@ -28,7 +27,7 @@
     border-right:0.25px #e7e7e7 solid;
     padding: 20px;
     display: inline-block;
-    flex: 1 1;
+    flex-basis: 1 1 0;
 }
 
 .selected {
@@ -41,6 +40,6 @@ a {
     font-weight:100;
 }
 
-a:hover {
-    color: #d9a73d;
+.block:nth-child(2n-1) {
+    flex: 2;
 }
