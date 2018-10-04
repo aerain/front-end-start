@@ -45,25 +45,24 @@ class App {
         return block;
     }
 
-    getData() {
-        this.getUrlData(json => {
-            console.log(json);
+    async getData() {
+        try {
+            let json = await this.getUrlData();
             json.data.map(item => this.wrap.appendChild(this.blockRender(item)));
-            // var str = '';
-            // json.data.map(item => str += this.blockRender(item));
-            // document.getElementById('wrap').innerHTML += str;
-        });
+        } catch (err) {
+            document.getElementById('wrap').innerText = '해당 브라우저에서는 지원하지 않습니다.';
+        }
     }
 
-    async getUrlData(callback) {
+    async getUrlData() {
         if(fetch) { // fetch 사용가능 경우
             try {
                 let data = await fetch(this.uri + `?page=${this.count++}&pagesize=${this.pagesize}`);
                 let json = await data.json();
-                callback(json);
-                console.log('Fetch Success');
+                return json;
             } catch (err) {
                 console.log('Fetch Error', err);
+                return err;
             }
         } else { // IE
             document.getElementById('wrap').innerText = '해당 브라우저에서는 지원하지 않습니다.';
