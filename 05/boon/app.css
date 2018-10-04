@@ -11,6 +11,11 @@
     border-left: 0.25px #e7e7e7 solid;
 }
 
+#button {
+    position:relative;
+    text-align: center;
+    margin: 20px;
+}
 .image-container {
     height:200px;
     background-size: cover;
