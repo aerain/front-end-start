@@ -87,9 +87,14 @@ class ES6Search {
         try {
             let res = await fetch(`${this.uri}&page=${this.count++}&size=${this.size}`, this.options);
             let data = await res.json();
-            data.documents.map(item => {
-                this.container.appendChild(this.renderItem(item));
-            });
+            console.log(data);
+            if (data.documents) {
+                data.documents.map(item => {
+                    this.container.appendChild(this.renderItem(item));
+                });
+            } else {
+                this.container.innerText = "검색결과가 없당께요";
+            }
         } catch (err) {
             console.log(err);
         }
