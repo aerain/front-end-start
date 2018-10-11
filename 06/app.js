@@ -2,13 +2,17 @@
 var appkey = '2a47db4cedcec2962ab36f43d726679f';
 var query = '제주대학교';
 var uri = 'https://dapi.kakao.com/v2/search/web';
-
-
+var inst;
 document.querySelector('.search > .inputtext').addEventListener('keypress', events => {
     let key = (events.which || events.keyCode);
     let search = events.target.value;
     if(key === 13 && search.trim() !== '') {
-        let inst = new ES6Search(appkey, search);
+        if(inst !== undefined) {
+            let button = inst.morebutton.querySelector('button');
+            button.removeEventListener('click', inst.getData);
+            delete inst;
+        }
+        inst = new ES6Search(appkey, search);
         inst.container.innerHTML = '';
         inst.getData();
         if(inst.morebutton.style.display !== 'block') {
@@ -57,7 +61,7 @@ class ES6Search {
         this.list = [];
         this.container = document.querySelector('.container');
         this.morebutton = document.querySelector('.showmethecontent');
-
+        this.isEnd = false;
         this.getData = this.getData.bind(this);
     }
 
@@ -85,16 +89,21 @@ class ES6Search {
     }
     async getData () {
         try {
-            let res = await fetch(`${this.uri}&page=${this.count++}&size=${this.size}`, this.options);
-            let data = await res.json();
-            console.log(data);
-            if (data.documents) {
-                data.documents.map(item => {
-                    this.container.appendChild(this.renderItem(item));
-                });
-            } else {
-                this.container.innerText = "검색결과가 없당께요";
+            if(!this.isEnd) {
+                let res = await fetch(`${this.uri}&page=${this.count}&size=${this.size}`, this.options);
+                let data = await res.json();
+                console.log(data);
+                this.isEnd = data.meta.is_end;
+                if (data.documents) {
+                    data.documents.map(item => {
+                        this.container.appendChild(this.renderItem(item));
+                    });
+                } else {
+                    this.container.innerText = "검색결과가 없당께요";
+                }
+                this.count++;
             }
+            
         } catch (err) {
             console.log(err);
         }
