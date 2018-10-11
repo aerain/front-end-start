@@ -10,7 +10,7 @@ document.querySelector('.search > .inputtext').addEventListener('keypress', even
         if(inst !== undefined) {
             let button = inst.morebutton.querySelector('button');
             button.removeEventListener('click', inst.getData);
-            delete inst;
+            inst = undefined;
         }
         inst = new ES6Search(appkey, search);
         inst.container.innerHTML = '';

@@ -1,8 +1,15 @@
+
 #wrap {
     position: relative;
     max-width:600px;
     min-width:360px;
     margin:auto;
+    min-height: 100vh;
+    vertical-align: middle;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .block {
@@ -17,15 +24,17 @@
 
 .search {
     display: flex;
+    width: 100%;
 }
 .inputtext {
     flex: 1;
     font-size: 32px;
     font-weight: 100;
     padding: 10px 20px 10px 20px;
-    
     border: 2px solid #0d793d;
-    
+}
+.inputtext:focus {
+    outline:none;
 }
 
 .container {
@@ -50,6 +59,18 @@
 }
 
 .showmethecontent {
+    flex: 1;
     text-align: center;
     display:none;
+    width:100%;
+    
+}
+.showmethecontent > button {
+    width:100%;
+    background-color: #ffffff;
+    padding: 10px 0 10px 0;
+    font-weight: 100;
+    font-size: 16px;
+    border-width: 0px 0.5px 0.5px 0.5px;
+    border-style: solid;
 }
