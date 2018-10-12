@@ -1,5 +1,3 @@
-
-var appkey = '2a47db4cedcec2962ab36f43d726679f';
 var query = '제주대학교';
 var uri = 'https://dapi.kakao.com/v2/search/web';
 var inst;
@@ -87,6 +85,7 @@ class ES6Search {
         `
         return block;
     }
+
     async getData () {
         try {
             if(!this.isEnd) {
