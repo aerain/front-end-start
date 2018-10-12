@@ -13,11 +13,19 @@
 var $btn = $('#btn');
 var $txt = $('#txt');
 var $debug = $('#box');
+$debug.on('click', 'div', event=> {
+    $(event.target).fadeOut();
+    console.log(event.target);
+});
 $btn.on('click', event => {
     console.log('click');
-    if($txt.val() === '') {
-        alert('검색어를 입력하세요');
-        return;
-    } 
-    $debug.html($txt.val());
+
+    
+    // $('h1').toggle('slow');
+    // if($txt.val() === '') {
+    //     alert('검색어를 입력하세요');
+    //     return;
+    // } 
+    // $debug.html($txt.val());
 });
+
