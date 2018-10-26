@@ -21,8 +21,7 @@ function addTodo(event) {
 function doneTodo(event) {
     let parent = event.target.parentNode;
     let todoText = parent.querySelector('span.text');
-    console.log(event.target);
-    if(event.target.value === "on") {
+    if(event.target.checked) {
         todoText.classList.add('done');
     }
     else {
