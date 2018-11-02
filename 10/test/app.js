@@ -72,8 +72,6 @@ function clickBoard(event) {
 function createBlock() {
     let block = document.createElement('div');
     block.className = 'block';
-
-    // block.addEventListener('click', placeBlock);
     board.appendChild(block);
 }
 
