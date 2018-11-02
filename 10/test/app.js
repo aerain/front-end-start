@@ -85,7 +85,8 @@ function levelUp() {
 
 function gameOver() {
     alert('쥐쥐');
-    clearInterval(levelUp)
+    clearInterval(levelUp);
+    clearInterval(blockInterval);
 }
 
 
