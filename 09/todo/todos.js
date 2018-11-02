@@ -42,8 +42,9 @@ function insertTodo(todo) {
         <span class="text">${todo}</span>
     `
     todoLi.querySelector('.delete').addEventListener('click', deleteTodo);
-    console.log(todoLi.querySelector('.toggle-checked'));
     todoLi.querySelector('.toggle-checked').addEventListener('click', doneTodo);
+
+    
     todoList.appendChild(todoLi);
     // var todoBlock = `
     //     <li>

@@ -1,0 +1,28 @@
+body {
+    background-color: #d7d7d7;
+    margin:0;
+}
+#container {
+    width: 800px;
+    margin:auto;
+    background-color: #ffffff;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+}
+#board {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    border: 1px solid #d7d7d7;
+}
+
+.block {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-color: red;
+}
+
