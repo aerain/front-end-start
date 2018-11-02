@@ -53,13 +53,23 @@ function onTime() {
     reduceLife();
     randomCoordinate();
 }
-function placeBlock(event) {
+
+function placeBlock() {
     clearInterval(blockInterval);
     addScore();
     randomCoordinate();
     blockInterval = setInterval(onTime, blockAppearTimer);
 }
 
+function clickBoard(event) {
+    let click = event.currentTarget;
+
+    if(click.className !== 'block') {
+        onTime();
+    } else {
+        placeBlock();
+    }
+}
 function createBlock() {
     let block = document.createElement('div');
     block.className = 'block';
@@ -89,6 +99,7 @@ function gameOver() {
     clearInterval(blockInterval);
 }
 
+board.addEventListener('click', clickBoard);
 
 createBlock();
 
