@@ -34,6 +34,7 @@ function setLevel() {
 function reduceLife() {
     life--;
     setLife();
+    if(life == 0) gameOver();
 }
 function setLife() {
     lifeSelector.innerText = `Life : ${life}`;
@@ -71,14 +72,20 @@ function levelUp() {
     addLevel();
     blockAppearTimer -= levelUpReduceAppearTimer; // 레벨업 될때마다 ReduceTimer 만큼 깝니다. 
 
+    // 리스폰시간이 0일때
     if(blockAppearTimer <= 0) {
         clearInterval(levelUp);
-        alert('네!');
+        alert('사람입니까?');
         return;
     }
 
     clearInterval(blockInterval);
     blockInterval = setInterval(onTime, blockAppearTimer);
+}
+
+function gameOver() {
+    alert('쥐쥐');
+    clearInterval(levelUp)
 }
 
 
