@@ -62,8 +62,7 @@ function placeBlock() {
 }
 
 function clickBoard(event) {
-    let click = event.currentTarget;
-
+    let click = event.target;
     if(click.className !== 'block') {
         onTime();
     } else {
@@ -74,7 +73,7 @@ function createBlock() {
     let block = document.createElement('div');
     block.className = 'block';
 
-    block.addEventListener('click', placeBlock);
+    // block.addEventListener('click', placeBlock);
     board.appendChild(block);
 }
 
@@ -99,9 +98,15 @@ function gameOver() {
     clearInterval(blockInterval);
 }
 
-board.addEventListener('click', clickBoard);
+function init() {
+    setScore();
+    setLevel();
+}
 
+init();
+board.addEventListener('click', clickBoard);
 createBlock();
+
 
 var blockInterval = setInterval(onTime, blockAppearTimer);
 var levelUp = setInterval(levelUp, levelTimer);
