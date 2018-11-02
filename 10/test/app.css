@@ -26,3 +26,11 @@ body {
     background-color: red;
 }
 
+.block:hover {
+    cursor: pointer;
+}
+
+.block:active {
+    background-color: blue;
+}
+
