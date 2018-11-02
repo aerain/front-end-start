@@ -3,7 +3,7 @@ var board = document.querySelector('#board'),
     scoreSelector = document.querySelector('.score'),
     lifeSelector = document.querySelector('.life');
 
-var levelTimer = 5000,
+var levelTimer = 10000,
     blockAppearTimer = 2000,
     levelUpReduceAppearTimer = 200;
 
@@ -67,15 +67,19 @@ function createBlock() {
     board.appendChild(block);
 }
 
-// function levelUp() {
-//     setLevel();
-//     blockAppearTimer -= levelUpReduceAppearTimer; // 레벨업 될때마다 ReduceTimer 만큼 깝니다. 
+function levelUp() {
+    addLevel();
+    blockAppearTimer -= levelUpReduceAppearTimer; // 레벨업 될때마다 ReduceTimer 만큼 깝니다. 
 
-//     if(blockAppearTimer <= 0) {
-//         clearInterval(levelUp);
-//         alert('네!');
-//     }
-// }
+    if(blockAppearTimer <= 0) {
+        clearInterval(levelUp);
+        alert('네!');
+        return;
+    }
+
+    clearInterval(blockInterval);
+    blockInterval = setInterval(onTime, blockAppearTimer);
+}
 
 
 createBlock();
